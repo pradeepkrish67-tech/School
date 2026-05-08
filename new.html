@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maharishi Vidya Mandir Senior Secondary School</title>
+
+    <!-- Google Fonts: Playfair Display for headings, Lato for body -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =============================================
+       CSS VARIABLES — Global color & font settings
+       ============================================= */
+      :root {
+        --navy: #0d2c54;
+        --royal: #1a56a0;
+        --gold: #e8a020;
+        --cream: #fdf8f0;
+        --white: #ffffff;
+        --text: #1e293b;
+        --muted: #64748b;
+        --radius: 10px;
+        --shadow: 0 4px 24px rgba(13, 44, 84, 0.13);
+      }
+
+      /* =============================================
+       RESET & BASE STYLES
+       ============================================= */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Lato", sans-serif;
+        color: var(--text);
+        background: var(--cream);
+        line-height: 1.7;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+        line-height: 1.2;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* =============================================
+       UTILITY
+       ============================================= */
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        color: var(--navy);
+        margin-bottom: 10px;
+      }
+
+      .section-subtitle {
+        color: var(--muted);
+        font-size: 1rem;
+        margin-bottom: 48px;
+      }
+
+      .gold-line {
+        width: 56px;
+        height: 4px;
+        background: var(--gold);
+        border-radius: 2px;
+        margin: 12px 0 16px;
+      }
+
+      /* =============================================
+       HEADER / NAVIGATION
+       ============================================= */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: var(--navy);
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+      }
+
+      /* School logo / name */
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-icon {
+        width: 42px;
+        height: 42px;
+        background: var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display", serif;
+        font-size: 1.3rem;
+        color: var(--navy);
+        font-weight: 900;
+        flex-shrink: 0;
+      }
+
+      .logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+      }
+
+      .logo-text span:first-child {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        color: var(--white);
+        font-weight: 700;
+      }
+
+      .logo-text span:last-child {
+        font-size: 0.7rem;
+        color: var(--gold);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      /* Nav links */
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 6px;
+      }
+
+      nav ul li a {
+        color: #c8d8f0;
+        font-size: 0.92rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition:
+          background 0.2s,
+          color 0.2s;
+        text-transform: uppercase;
+      }
+
+      /* Hover effect on nav links */
+      nav ul li a:hover {
+        background: var(--gold);
+        color: var(--navy);
+      }
+
+      /* Hamburger (mobile) */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+
+      .hamburger span {
+        width: 26px;
+        height: 3px;
+        background: var(--white);
+        border-radius: 2px;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+
+      /* Animated hamburger to X */
+      .hamburger.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      /* =============================================
+       HERO / HOME SECTION
+       ============================================= */
+      #home {
+        padding-top: 68px; /* offset fixed header */
+        min-height: 100vh;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(13, 44, 84, 0.88) 0%,
+            rgba(26, 86, 160, 0.7) 100%
+          ),
+          url("https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1400&q=80")
+            center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Decorative circles */
+      #home::before,
+      #home::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.12;
+        background: var(--gold);
+      }
+      #home::before {
+        width: 500px;
+        height: 500px;
+        top: -120px;
+        right: -100px;
+      }
+      #home::after {
+        width: 300px;
+        height: 300px;
+        bottom: -80px;
+        left: -60px;
+      }
+
+      .hero-content {
+        color: var(--white);
+        max-width: 680px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: var(--gold);
+        color: var(--navy);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 6px 16px;
+        border-radius: 30px;
+        margin-bottom: 20px;
+      }
+
+      .hero-content h1 {
+        font-size: clamp(2rem, 5.5vw, 3.6rem);
+        margin-bottom: 20px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-content h1 em {
+        color: var(--gold);
+        font-style: normal;
+      }
+
+      .hero-content p {
+        font-size: 1.1rem;
+        opacity: 0.88;
+        margin-bottom: 36px;
+        max-width: 520px;
+      }
+
+      /* Welcome button — JS interactive feature */
+      .btn-gold {
+        display: inline-block;
+        background: var(--gold);
+        color: var(--navy);
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 14px 32px;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 16px rgba(232, 160, 32, 0.4);
+      }
+
+      .btn-gold:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(232, 160, 32, 0.5);
+      }
+
+      /* Welcome banner that appears via JS */
+      #welcome-banner {
+        display: none;
+        margin-top: 20px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        padding: 14px 24px;
+        border-radius: var(--radius);
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--white);
+        animation: fadeSlide 0.4s ease;
+      }
+
+      @keyframes fadeSlide {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* =============================================
+       ABOUT SECTION
+       ============================================= */
+      #about {
+        padding: 96px 0;
+        background: var(--white);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+
+      .about-img-wrap {
+        position: relative;
+      }
+
+      .about-img-wrap img {
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+      }
+
+      /* Gold accent card floating over image */
+      .about-badge {
+        position: absolute;
+        bottom: -22px;
+        right: -22px;
+        background: var(--navy);
+        color: var(--white);
+        padding: 20px 26px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: var(--shadow);
+      }
+
+      .about-badge .big {
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--gold);
+        display: block;
+      }
+      .about-badge .small {
+        font-size: 0.78rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        opacity: 0.8;
+      }
+
+      .about-text p {
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+
+      /* Stats row */
+      .stats-row {
+        display: flex;
+        gap: 24px;
+        margin-top: 32px;
+      }
+
+      .stat-box {
+        text-align: center;
+        background: var(--cream);
+        border-radius: var(--radius);
+        padding: 16px 24px;
+        flex: 1;
+      }
+
+      .stat-box .num {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: var(--royal);
+      }
+
+      .stat-box .label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--muted);
+      }
+
+      /* =============================================
+       COURSES SECTION
+       ============================================= */
+      #courses {
+        padding: 96px 0;
+        background: var(--cream);
+      }
+
+      .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 24px;
+      }
+
+      /* Each course card */
+      .course-card {
+        background: var(--white);
+        border-radius: 14px;
+        padding: 32px 24px;
+        text-align: center;
+        box-shadow: 0 2px 12px rgba(13, 44, 84, 0.07);
+        border-top: 4px solid transparent;
+        transition:
+          transform 0.25s,
+          border-color 0.25s,
+          box-shadow 0.25s;
+        cursor: default;
+      }
+
+      .course-card:hover {
+        transform: translateY(-6px);
+        border-top-color: var(--gold);
+        box-shadow: var(--shadow);
+      }
+
+      .course-icon {
+        font-size: 2.4rem;
+        margin-bottom: 16px;
+      }
+
+      .course-card h3 {
+        font-size: 1.15rem;
+        color: var(--navy);
+        margin-bottom: 8px;
+      }
+
+      .course-card p {
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+
+      .course-tag {
+        display: inline-block;
+        margin-top: 14px;
+        background: var(--cream);
+        color: var(--royal);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 30px;
+      }
+
+      /* =============================================
+       CONTACT SECTION
+       ============================================= */
+      #contact {
+        padding: 96px 0;
+        background: var(--navy);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Background pattern */
+      #contact::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 80% 20%,
+          rgba(26, 86, 160, 0.5) 0%,
+          transparent 60%
+        );
+      }
+
+      #contact .section-title,
+      #contact .section-subtitle {
+        color: var(--white);
+        position: relative;
+      }
+      #contact .section-subtitle {
+        color: #a0b4cc;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 64px;
+        align-items: start;
+        position: relative;
+      }
+
+      /* Info cards on left */
+      .contact-info h3 {
+        font-size: 1.4rem;
+        color: var(--white);
+        margin-bottom: 24px;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 20px;
+      }
+
+      .info-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(232, 160, 32, 0.15);
+        border: 1px solid rgba(232, 160, 32, 0.3);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+
+      .info-item p {
+        color: #a0b4cc;
+        font-size: 0.9rem;
+      }
+      .info-item strong {
+        color: var(--white);
+        font-size: 0.95rem;
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      /* Contact form */
+      .contact-form {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 40px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #c8d8f0;
+        margin-bottom: 8px;
+        letter-spacing: 0.4px;
+      }
+
+      /* Input / textarea styling */
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: var(--white);
+        border-radius: 8px;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        font-family: "Lato", sans-serif;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: #6888aa;
+      }
+
+      /* Focus effect */
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--gold);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      /* Error message under fields */
+      .error-msg {
+        display: none;
+        color: #ff8a80;
+        font-size: 0.8rem;
+        margin-top: 5px;
+      }
+
+      .form-group textarea {
+        height: 120px;
+        resize: vertical;
+      }
+
+      /* Submit button */
+      .btn-submit {
+        width: 100%;
+        background: var(--gold);
+        color: var(--navy);
+        border: none;
+        border-radius: 8px;
+        padding: 14px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        transition:
+          background 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .btn-submit:hover {
+        background: #f0b030;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(232, 160, 32, 0.4);
+      }
+
+      /* Success message shown after submit */
+      #success-msg {
+        display: none;
+        margin-top: 16px;
+        background: rgba(56, 200, 120, 0.15);
+        border: 1px solid rgba(56, 200, 120, 0.35);
+        color: #6ee7b7;
+        padding: 14px 18px;
+        border-radius: 8px;
+        font-weight: 700;
+        text-align: center;
+        font-size: 0.95rem;
+        animation: fadeSlide 0.4s ease;
+      }
+
+      /* =============================================
+       FOOTER
+       ============================================= */
+      footer {
+        background: #081929;
+        color: #6888aa;
+        text-align: center;
+        padding: 28px 24px;
+        font-size: 0.85rem;
+      }
+
+      footer span {
+        color: var(--gold);
+      }
+
+      /* =============================================
+       RESPONSIVE — MOBILE STYLES
+       ============================================= */
+      @media (max-width: 768px) {
+        /* Show hamburger, hide nav links by default */
+        .hamburger {
+          display: flex;
+        }
+
+        nav ul {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 68px;
+          left: 0;
+          right: 0;
+          background: var(--navy);
+          padding: 16px 24px 24px;
+          gap: 4px;
+          border-top: 2px solid var(--gold);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Show nav when hamburger is active */
+        nav ul.open {
+          display: flex;
+        }
+
+        nav ul li a {
+          display: block;
+          padding: 12px 16px;
+          font-size: 0.95rem;
+        }
+
+        /* Stack about grid */
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .about-badge {
+          right: 12px;
+        }
+
+        /* Stack contact grid */
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .contact-form {
+          padding: 28px 20px;
+        }
+
+        /* Stats row stacks */
+        .stats-row {
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        /* Hero tweaks */
+        #home {
+          padding-top: 68px;
+          min-height: 90vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- =============================================
+       HEADER — Fixed navigation bar
+       ============================================= -->
+    <header>
+      <div class="container nav-inner">
+        <!-- School logo + name -->
+        <a href="#home" class="logo">
+          <div class="logo-icon">M</div>
+          <div class="logo-text">
+            <span>Maharishi Vidya Mandir</span>
+            <span>Senior Secondary School</span>
+          </div>
+        </a>
+
+        <!-- Desktop navigation -->
+        <nav>
+          <!-- Hamburger button for mobile -->
+          <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
+
+          <ul id="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- =============================================
+       HOME / HERO SECTION
+       ============================================= -->
+    <section id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">🎓 Excellence in Education</div>
+
+          <h1>
+            Welcome to<br />
+            <em>Maharishi Vidya Mandir</em>
+          </h1>
+
+          <p>
+            Nurturing young minds with knowledge, values, and wisdom since
+            decades. We believe every student carries the potential to change
+            the world.
+          </p>
+
+          <!-- JS Feature: Click to show welcome message -->
+          <button class="btn-gold" onclick="showWelcome()">
+            ✨ Say Hello to Our School
+          </button>
+
+          <!-- Welcome banner — hidden by default, shown via JS -->
+          <div id="welcome-banner">
+            🙏 Welcome to our School! We are glad to have you here.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       ABOUT SECTION
+       ============================================= -->
+    <section id="about">
+      <div class="container">
+        <div class="about-grid">
+          <!-- Left: Image -->
+          <div class="about-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700&q=80"
+              alt="Students in school"
+            />
+            <div class="about-badge">
+              <span class="big">25+</span>
+              <span class="small">Years of<br />Excellence</span>
+            </div>
+          </div>
+
+          <!-- Right: Text content -->
+          <div class="about-text">
+            <h2 class="section-title">About Our School</h2>
+            <div class="gold-line"></div>
+            <p class="section-subtitle">Shaping the Leaders of Tomorrow</p>
+
+            <p>
+              <strong>Maharishi Vidya Mandir Senior Secondary School</strong> is
+              a premier institution committed to providing holistic education.
+              We combine academic rigour with moral values, creative thinking,
+              and physical development to produce well-rounded individuals.
+            </p>
+
+            <p>
+              Our dedicated faculty, modern infrastructure, and student-first
+              philosophy create an environment where every child thrives. We
+              offer a broad curriculum spanning languages, sciences,
+              mathematics, and commerce — preparing students for higher
+              education and life beyond the classroom.
+            </p>
+
+            <p>
+              Guided by the teachings of Maharishi, we instil discipline,
+              respect, and a love for learning that stays with students
+              throughout their lives.
+            </p>
+
+            <!-- Quick stats -->
+            <div class="stats-row">
+              <div class="stat-box">
+                <div class="num">1200+</div>
+                <div class="label">Students</div>
+              </div>
+              <div class="stat-box">
+                <div class="num">80+</div>
+                <div class="label">Teachers</div>
+              </div>
+              <div class="stat-box">
+                <div class="num">98%</div>
+                <div class="label">Pass Rate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       COURSES SECTION
+       ============================================= -->
+    <section id="courses">
+      <div class="container">
+        <h2 class="section-title">Our Courses</h2>
+        <div class="gold-line"></div>
+        <p class="section-subtitle">
+          A wide range of subjects taught by expert faculty — choose your path
+          to success.
+        </p>
+
+        <!-- Course cards grid -->
+        <div class="courses-grid">
+          <!-- Tamil -->
+          <div class="course-card">
+            <div class="course-icon">📚</div>
+            <h3>Tamil</h3>
+            <p>
+              Master the classical Tamil language — literature, grammar, and
+              cultural heritage.
+            </p>
+            <span class="course-tag">Language</span>
+          </div>
+
+          <!-- English -->
+          <div class="course-card">
+            <div class="course-icon">🗣️</div>
+            <h3>English</h3>
+            <p>
+              Develop strong reading, writing, and communication skills in
+              English.
+            </p>
+            <span class="course-tag">Language</span>
+          </div>
+
+          <!-- Maths -->
+          <div class="course-card">
+            <div class="course-icon">🔢</div>
+            <h3>Mathematics</h3>
+            <p>
+              From algebra to calculus — build problem-solving and analytical
+              thinking.
+            </p>
+            <span class="course-tag">Core Science</span>
+          </div>
+
+          <!-- Physics -->
+          <div class="course-card">
+            <div class="course-icon">⚛️</div>
+            <h3>Physics</h3>
+            <p>
+              Explore the laws that govern our universe — mechanics, optics, and
+              more.
+            </p>
+            <span class="course-tag">Science</span>
+          </div>
+
+          <!-- Chemistry -->
+          <div class="course-card">
+            <div class="course-icon">🧪</div>
+            <h3>Chemistry</h3>
+            <p>
+              Understand matter and reactions through theory and hands-on lab
+              experiments.
+            </p>
+            <span class="course-tag">Science</span>
+          </div>
+
+          <!-- Biology -->
+          <div class="course-card">
+            <div class="course-icon">🌱</div>
+            <h3>Biology</h3>
+            <p>
+              Study living organisms, ecosystems, and the science behind life
+              itself.
+            </p>
+            <span class="course-tag">Science</span>
+          </div>
+
+          <!-- Computer Science -->
+          <div class="course-card">
+            <div class="course-icon">💻</div>
+            <h3>Computer Science</h3>
+            <p>
+              Learn programming, databases, and digital skills for the modern
+              world.
+            </p>
+            <span class="course-tag">Technology</span>
+          </div>
+
+          <!-- Commerce -->
+          <div class="course-card">
+            <div class="course-icon">📊</div>
+            <h3>Commerce</h3>
+            <p>
+              Grasp business, economics, accountancy, and entrepreneurship
+              fundamentals.
+            </p>
+            <span class="course-tag">Commerce</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       CONTACT SECTION
+       ============================================= -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="gold-line"></div>
+        <p class="section-subtitle">
+          We'd love to hear from you. Reach out anytime!
+        </p>
+
+        <div class="contact-grid">
+          <!-- Left: Info -->
+          <div class="contact-info">
+            <h3>Get in Touch</h3>
+
+            <div class="info-item">
+              <div class="info-icon">📍</div>
+              <div>
+                <strong>Address</strong>
+                <p>
+                  Maharishi Vidya Mandir, Senior Secondary School, Tamil Nadu,
+                  India
+                </p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">📞</div>
+              <div>
+                <strong>Phone</strong>
+                <p>+91 98765 43210</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">✉️</div>
+              <div>
+                <strong>Email</strong>
+                <p>info@maharishividyamandir.edu.in</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">🕐</div>
+              <div>
+                <strong>Office Hours</strong>
+                <p>Mon – Sat: 8:00 AM – 4:00 PM</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Contact Form -->
+          <div class="contact-form">
+            <!-- Name field -->
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" placeholder="e.g. Arjun Kumar" />
+              <span class="error-msg" id="nameError"
+                >Please enter your name.</span
+              >
+            </div>
+
+            <!-- Email field -->
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="e.g. arjun@email.com"
+              />
+              <span class="error-msg" id="emailError"
+                >Please enter a valid email address.</span
+              >
+            </div>
+
+            <!-- Message field -->
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea
+                id="message"
+                placeholder="Write your message here..."
+              ></textarea>
+              <span class="error-msg" id="messageError"
+                >Please write a message.</span
+              >
+            </div>
+
+            <!-- Submit button — triggers JS validateForm() -->
+            <button class="btn-submit" onclick="validateForm()">
+              Send Message →
+            </button>
+
+            <!-- Success message shown after valid submit -->
+            <div id="success-msg">
+              ✅ Thank you! Your message has been sent. We will get back to you
+              soon.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+       FOOTER
+       ============================================= -->
+    <footer>
+      <p>
+        © 2024 <span>Maharishi Vidya Mandir Senior Secondary School</span>. All
+        rights reserved. | Crafted with 🎓 for students.
+      </p>
+    </footer>
+
+    <!-- =============================================
+       JAVASCRIPT
+       ============================================= -->
+    <script>
+      // --------------------------------------------------
+      // FEATURE 1: Hamburger menu toggle (mobile nav)
+      // --------------------------------------------------
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("nav-menu");
+
+      hamburger.addEventListener("click", function () {
+        // Toggle the 'open' class to show/hide the menu
+        navMenu.classList.toggle("open");
+        // Toggle the 'active' class to animate hamburger → X
+        hamburger.classList.toggle("active");
+      });
+
+      // Close the mobile menu when a nav link is clicked
+      navMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          navMenu.classList.remove("open");
+          hamburger.classList.remove("active");
+        });
+      });
+
+      // --------------------------------------------------
+      // FEATURE 2: Welcome banner toggle (Hero button)
+      // --------------------------------------------------
+      function showWelcome() {
+        var banner = document.getElementById("welcome-banner");
+
+        // If already visible, hide it; otherwise show it
+        if (banner.style.display === "block") {
+          banner.style.display = "none";
+        } else {
+          banner.style.display = "block";
+        }
+      }
+
+      // --------------------------------------------------
+      // FEATURE 3: Contact form validation
+      // --------------------------------------------------
+      function validateForm() {
+        // Get values from each field (trimmed of extra spaces)
+        var name = document.getElementById("name").value.trim();
+        var email = document.getElementById("email").value.trim();
+        var message = document.getElementById("message").value.trim();
+
+        // Get error message elements
+        var nameError = document.getElementById("nameError");
+        var emailError = document.getElementById("emailError");
+        var messageError = document.getElementById("messageError");
+        var successMsg = document.getElementById("success-msg");
+
+        // Hide all errors and success message before re-checking
+        nameError.style.display = "none";
+        emailError.style.display = "none";
+        messageError.style.display = "none";
+        successMsg.style.display = "none";
+
+        // Track whether form is valid
+        var isValid = true;
+
+        // Check: Name must not be empty
+        if (name === "") {
+          nameError.style.display = "block";
+          isValid = false;
+        }
+
+        // Check: Email must not be empty AND must match a basic email pattern
+        // The regex checks for: something@something.something
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email === "" || !emailPattern.test(email)) {
+          emailError.style.display = "block";
+          isValid = false;
+        }
+
+        // Check: Message must not be empty
+        if (message === "") {
+          messageError.style.display = "block";
+          isValid = false;
+        }
+
+        // If all checks pass, show success message and clear the form
+        if (isValid) {
+          successMsg.style.display = "block";
+
+          // Clear form fields after successful submission
+          document.getElementById("name").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("message").value = "";
+
+          // Scroll success message into view smoothly
+          successMsg.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }
+    </script>
+  </body>
+</html>
